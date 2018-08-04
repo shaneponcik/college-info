@@ -36,7 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   //sql fragment for ACT Composite score filtering
   $sqlQueryACTCM = "AND ACTCM75<=$ACTCMScore";
   //generate the whole SQL query and submit to db
-  $sqlQuery = "SELECT INSTNM, INSTURL FROM info WHERE $sqlQueryStates $sqlQueryACTCM";
+  $sqlQuery = "SELECT idx, INSTNM, INSTURL FROM info WHERE $sqlQueryStates $sqlQueryACTCM";
+  //echo $sqlQuery;
   $collegeResults = $connection->query($sqlQuery);
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -48,7 +49,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $url = $college['INSTURL'];
     $url = preg_replace('#^https?://#', '', $url); //removes http/https from beginning
     $name = $college['INSTNM'];
-    echo "<a href=\"https://$url\">$name</a><br />";
+    $idx = $college['idx'];
+    echo "<a href=\"http://$url\">$name</a>";
+
+    //also want to add a more info option incase that user wants to
+    printMoreInfoOption($idx);
   }
 ////////////////////////////////////////////////////////////////////////////////
 
