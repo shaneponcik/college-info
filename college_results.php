@@ -15,7 +15,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   foreach($_POST as $name => $val)
   {
     if($val == "STATE")
+    {
       $stateList[] = $name;
+    }
   }
   //want to find out the user's inputted scores
   $ACTCMScore = $_POST['ACTCMScore'];
