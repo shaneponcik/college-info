@@ -31,4 +31,24 @@ function printMoreInfoOption($idx)
   echo "</form>";
 }
 
+function printCollegeInfoAsAnchor($college)
+{
+    $url = $college['INSTURL'];
+    $url = preg_replace('#^https?://#', '', $url); //removes http/https from beginning
+    $name = $college['INSTNM'];
+    $idx = $college['idx'];
+    echo "<a href=\"http://$url\">$name</a>";
+
+    //also want to add a more info option incase that user wants to
+    printMoreInfoOption($idx);
+}
+
+function printCollegesAsAnchors($colleges)
+{
+  foreach($colleges as $college)
+  {
+    printCollegeInfoAsAnchor($college);
+  }
+}
+
  ?>
